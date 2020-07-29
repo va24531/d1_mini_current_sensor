@@ -15,3 +15,7 @@ Current sensor is powered by 3.3vDC, and the ESP's A0 (Analog sensor) picks up t
 connections (Besides power) are needed.
 
 Can be easily read by Node-Red flow, also provided for example, however any language that can parse a CSV HTTP sentence can handle this data with ease.
+IP address of target device will need to be changed in Node-Red for TCP Connection (192.168.0.112 currently) to match your setup.
+
+ESP8266mdns does work with Node-MCU versions of the board, will test on Di mimi's in the future and will empliment into the code in the future, allowing Node-Red to
+use a device name to connect to instead of a IP address.
