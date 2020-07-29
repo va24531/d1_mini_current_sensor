@@ -1,0 +1,95 @@
+[
+    {
+        "id": "b19afea1.51a94",
+        "type": "inject",
+        "z": "4adff088.a93c78",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "*/5 0-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "a99d0e43.e135a8"
+            ]
+        ]
+    },
+    {
+        "id": "a99d0e43.e135a8",
+        "type": "http request",
+        "z": "4adff088.a93c78",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.0.112",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "279a7a6e.a91a7e"
+            ]
+        ]
+    },
+    {
+        "id": "279a7a6e.a91a7e",
+        "type": "csv",
+        "z": "4adff088.a93c78",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "352af784.98d448"
+            ]
+        ]
+    },
+    {
+        "id": "9d1587f5.c25ad",
+        "type": "debug",
+        "z": "4adff088.a93c78",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 750,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "352af784.98d448",
+        "type": "function",
+        "z": "4adff088.a93c78",
+        "name": "",
+        "func": "\nmsg.payload.amps = msg.payload.col2;\nmsg.payload.watts = msg.payload.col4;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "9d1587f5.c25ad"
+            ]
+        ]
+    }
+]
