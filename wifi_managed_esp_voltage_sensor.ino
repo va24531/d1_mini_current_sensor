@@ -56,35 +56,10 @@ void loop(){
             client.println("Connection: close");
             client.println();
             
-            // turns the GPIOs on and off
-            if (header.indexOf("GET /5/on") >= 0) {  }
-            else if (header.indexOf("GET /5/off") >= 0) { }
-            
-            // Display the HTML web page
-           // client.println("<!DOCTYPE html><html>");
-           // client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
-           // client.println("<link rel=\"icon\" href=\"data:,\">");
-           // client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
-           // client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-           // client.println("</style></head>");
-            
-            // Web Page Heading
-           // client.println("<body><h1>ESP8266 Web Server</h1>");
-
             float ACCurrentValue = readACCurrentValue(); //read AC Current Value
               Serial.print("A,");Serial.print(ACCurrentValue); Serial.print(","); Serial.print("W,");Serial.print(ACCurrentValue * 120);Serial.println(",*");
-                            
               client.print("A,");client.print(ACCurrentValue); client.print(","); client.print("W,");client.print(ACCurrentValue * 120);client.println(",*");
               
-              
-            //float aref = analogRead(ACPin) * (VREF/1023.0);
-            //  Serial.print(" REFV: ");              Serial.println(aref);
-            //  client.print(" REFV: ");              client.println(aref);
-
-           //     client.print("<b><h2>* * * "); client.print(sensorValue); client.print(" * * *</h2></b>");
-           // client.println("</body></html>");
-            
-            //client.println();
             break;
           } else { // if you got a newline, then clear currentLine
             currentLine = "";
@@ -112,8 +87,8 @@ void loop(){
         float AC_Current_Value = 0;
         float peakVoltage = 0;  
           float voltageVirtualValue = 0;  //Vrms
-            for (int i = 0; i < 5; i++) { peakVoltage += analogRead(ACPin); delay(1); }
-            peakVoltage = peakVoltage / 5;   
+            for (int i = 0; i < 10; i++) { peakVoltage += analogRead(ACPin); delay(1); }
+            peakVoltage = peakVoltage / 10;   
             voltageVirtualValue = peakVoltage * 0.707;
             /*The circuit is amplified by 2 times, so it is divided by 2.*/
             voltageVirtualValue = (voltageVirtualValue / 1024 * VREF ) / 2;  
